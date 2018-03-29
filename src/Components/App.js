@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Marketing from './Components/Marketing/marketing';
 import './App.css';
-import Header from "./Components/Container/header/header";
-import Footer from "./Components/Container/footer/footer"
+import Header from "./Container/header/header";
+import Footer from "./Container/footer/footer"
 
 
 class App extends Component {
