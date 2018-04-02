@@ -1,12 +1,14 @@
-import {createStore, applyMiddleware, compose} from 'redux';
+import { createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
-import {createLogger} from 'redux-logger';
+import { routerMiddleware } from 'react-router-redux';
+import { createLogger } from 'redux-logger';
 
 import rootReducer from './modules'
 
-const configureStore = (preloadedStore) => {
+const configureStore = (preloadedStore, history) => {
     const middlewares = [
-         thunk
+        thunk,
+        routerMiddleware(history),
     ];
 
     if (process.env.NODE_ENV === 'development') {
