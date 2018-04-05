@@ -3,6 +3,6 @@ import { Link } from 'react-router-dom';
 const Marketing = () =>
     <div>
     <h1>Marketing</h1>
-    <Link to="/deneme">Go Deneme Route</Link>
+    <Link to="/login">Go Login Route</Link>
     </div>;
 export default Marketing;

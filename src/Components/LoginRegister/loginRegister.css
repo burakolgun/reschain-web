@@ -1,0 +1,35 @@
+.Lr {
+    height: 800px;
+    width: 100%;
+}
+#register {
+    height: 400px;
+    width: 400px;
+    font-size: 36px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #958ebd;
+    float: left;
+}
+
+#login {
+    height: 400px;
+    width: 400px;
+    font-size: 36px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #707070;
+    float: left;
+}
+
+.input {
+    display: block;
+}

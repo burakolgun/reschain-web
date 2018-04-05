@@ -1,5 +1,5 @@
 .footer {
     background-color: dimgrey;
-    height: 150px;
-    width: auto;
+    height: 100px;
+    flex-shrink: 0;
 }

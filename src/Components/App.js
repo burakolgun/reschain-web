@@ -5,6 +5,7 @@ import './App.css';
 import Header from "../Container/header/header";
 import Footer from "../Container/footer/footer"
 import Content from "../Container/content/content";
+import LoginRegister from "./LoginRegister/loginRegister";
 
 
 class App extends Component {
@@ -15,7 +16,7 @@ class App extends Component {
           <Content>
               <Switch>
                   <Route exact path='/' component={Marketing} />
-                  <Route path='/deneme' component={Marketing} />
+                  <Route path='/login' component={LoginRegister} />
               </Switch>
           </Content>
           <Footer/>
