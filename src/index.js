@@ -10,7 +10,7 @@ import configureStore from './Redux/configureStore';
 import './Asset/css/bootstrap-grid.css';
 
 const history = createHistory();
-const store = configureStore(undefined, history);
+export const store = configureStore(undefined, history);
 
 const render = Component => {
     ReactDOM.render(

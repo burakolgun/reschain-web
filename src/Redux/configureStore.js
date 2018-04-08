@@ -2,7 +2,6 @@ import { createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import { routerMiddleware } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
-
 import rootReducer from './modules'
 
 const configureStore = (preloadedStore, history) => {
@@ -30,7 +29,7 @@ const configureStore = (preloadedStore, history) => {
 
     //Returned store
 
-    const store = createStore(rootReducer,preloadedStore, compose(...composed));
+    const store = createStore(rootReducer, preloadedStore, compose(...composed));
     return store;
 };
 
