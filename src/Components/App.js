@@ -7,8 +7,11 @@ import Footer from "../Container/footer/footer"
 import Content from "../Container/content/content";
 import LoginRegister from "./LoginRegister/loginRegister";
 
-
 class App extends Component {
+    constructor(props) {
+        super(props);
+    }
+
   render() {
       return (
       <div className="App">
