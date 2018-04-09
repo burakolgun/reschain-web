@@ -12,20 +12,20 @@ class App extends Component {
         super(props);
     }
 
-  render() {
-      return (
-      <div className="App">
-          <Header/>
-          <Content>
-              <Switch>
-                  <Route exact path='/' component={Marketing} />
-                  <Route path='/login' component={LoginRegister} />
-              </Switch>
-          </Content>
-          <Footer/>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App">
+                <Header />
+                <Content>
+                    <Switch>
+                        <Route exact path='/' component={Marketing} />
+                        <Route path='/login' component={LoginRegister} />
+                    </Switch>
+                </Content>
+                <Footer />
+            </div>
+        );
+    }
 }
 
 export default App;

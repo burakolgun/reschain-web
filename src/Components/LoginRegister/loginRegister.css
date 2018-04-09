@@ -1,33 +1,69 @@
-.Lr {
-    height: 800px;
-    width: 100%;
+.main-page-container {
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
-#register {
-    height: 400px;
-    width: 400px;
-    font-size: 36px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
+
+.login-container,
+.register-container {
+    height: auto;
+    padding: 25px;
+    background-color: #ffffff;
+    box-shadow: 0px 17px 39px 0 rgba(0, 0, 0, 0.35);
+}
+
+.login-container {
+    margin-top: -20px;
+    margin-bottom: -20px;
+}
+
+.register-container {
+    border: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+.main-page-container input {
+    width: 90%;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: solid 1px 
+    rgba(0, 0, 0, 0.35);
+    margin: 5px;
+    margin-left: 5%;
+    padding-left: 15px;
+}
+
+.main-page-container input:focus {
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+.main-page-container .btn-register {
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: #958ebd;
+}
+
+.main-page-container .btn-login {
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: #707070;
+}
+
+.register-container h3, 
+.login-container h3 {
     text-align: center;
+    font-size: 1.5vw;
+}
+
+.register-container h3 {
     color: #958ebd;
 }
 
-#login {
-    height: 400px;
-    width: 400px;
-    font-size: 36px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    color: #707070;
+.login-container h3 {
+    color: #535353;
 }
 
-.input {
-    display: block;
-}
