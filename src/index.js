@@ -8,6 +8,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './Redux/configureStore';
 import './Asset/css/bootstrap-grid.css';
+import './Asset/css/bootstrap.min.css';
 
 const history = createHistory();
 export const store = configureStore(undefined, history);
