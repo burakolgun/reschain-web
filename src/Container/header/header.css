@@ -1,5 +1,15 @@
-.header {
-    background-color: aquamarine;
-    flex-shrink: 0;
-    height: 66px;
+header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    background-color: #93c99d;
+}
+
+header .logo {
+    color: #fff;
+    font-size: 20px;
+    padding-left: 30px;
+    letter-spacing: 0.5px;
 }

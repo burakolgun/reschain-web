@@ -1,16 +1,16 @@
 import React from 'react';
 import './loginRegister.css';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { apiService } from '../../Services/apiService'
 import { Redirect } from 'react-router-dom';
 
-class LoginRegister extends React.Component
-{
-    constructor (props) {
+class LoginRegister extends React.Component {
+    constructor(props) {
         super(props);
 
         this.state = {
             userName: '',
+            email: '',
             password: '',
             submitted: false
         };
@@ -38,7 +38,7 @@ class LoginRegister extends React.Component
     }
 
     render() {
-        const { userName, password, submitted } = this.state;
+        const { userName, email, password, submitted } = this.state;
 
         if (this.props.loggingIn === true) {
             return <Redirect to='/' />
@@ -46,28 +46,69 @@ class LoginRegister extends React.Component
 
         return (
 
-            <div className="col-md-6 col-md-offset-3">
-                <h2>Login</h2>
-                <form name="form" onSubmit={this.handleSubmit}>
-                    <div className={'form-group' + (submitted && !userName ? ' has-error' : '')}>
-                        <label htmlFor="userName">userName</label>
-                        <input type="text" className="form-control" name="userName" value={userName} onChange={this.handleChange} />
-                        {submitted && !userName &&
-                        <div className="help-block">userName is required</div>
-                        }
-                    </div>
-                    <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
-                        <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange} />
-                        {submitted && !password &&
-                        <div className="help-block">Password is required</div>
-                        }
-                    </div>
-                    <div className="form-group">
-                        <button className="btn btn-primary">Login</button>
-                        {this.props.loggingIn}
-                    </div>
-                </form>
+            <div className="main-page-container row col-md-10 offset-2">
+                <div className="register-container col-md-5">
+                <h3>REGISTER</h3>
+                    <form name="form" onSubmit={this.handleSubmit}>
+                        <div className={'form-group' + (submitted && !userName ? ' has-error' : '')}>
+                            <input type="text" 
+                                   className="form-control" 
+                                   name="userName" 
+                                   value={userName} 
+                                   onChange={this.handleChange} 
+                                   placeholder="Username" />
+                            {submitted && !userName &&
+                                <div className="help-block">userName is required</div>
+                            }
+                        </div>
+                        <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
+                            <input type="email" 
+                                   className="form-control" 
+                                   name="email" 
+                                   value={email} 
+                                   onChange={this.handleChange} 
+                                   placeholder="E-mail" />
+                            {submitted && !email &&
+                                <div className="help-block">E-mail is required</div>
+                            }
+                        </div><div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
+                            <input type="password" 
+                                   className="form-control" 
+                                   name="password" 
+                                   value={password} 
+                                   onChange={this.handleChange} 
+                                   placeholder="Password" />
+                            {submitted && !password &&
+                                <div className="help-block">Password is required</div>
+                            }
+                        </div>
+                        <div className="form-group">
+                            <button className="btn btn-register col-md-4 offset-4">Start</button>
+                            {this.props.loggingIn}
+                        </div>
+                    </form>
+                </div>
+                <div className="login-container col-md-4">
+                <h3>LOGIN</h3>
+                    <form name="form" onSubmit={this.handleSubmit}>
+                        <div className={'form-group' + (submitted && !userName ? ' has-error' : '')}>
+                            <input type="text" className="form-control" name="userName" value={userName} onChange={this.handleChange} />
+                            {submitted && !userName &&
+                                <div className="help-block">Username is required</div>
+                            }
+                        </div>
+                        <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
+                            <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange} />
+                            {submitted && !password &&
+                                <div className="help-block">Password is required</div>
+                            }
+                        </div>
+                        <div className="form-group">
+                            <button className="btn btn-login col-md-4 offset-4">Login</button>
+                            {this.props.loggingIn}
+                        </div>
+                    </form>
+                </div>
             </div>
         );
     }

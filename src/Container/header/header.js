@@ -12,10 +12,11 @@ export default class Header extends Component {
 
     render() {
         return (
-
-            <div className="header">
-
-            </div>
+            <header>
+                <div className="logo">
+                    don'tbreakthechain
+                </div>
+            </header>
         )
     }
 }
