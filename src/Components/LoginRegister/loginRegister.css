@@ -1,4 +1,7 @@
 .main-page-container {
+    width: 60%;
+    display: flex;
+    margin: auto;
     margin-bottom: 30px;
     margin-top: 30px;
 }
@@ -12,11 +15,13 @@
 }
 
 .login-container {
+    width: 40%;
     margin-top: -20px;
     margin-bottom: -20px;
 }
 
 .register-container {
+    width: 60%;
     border: 1px solid rgba(0, 0, 0, 0.35);
 }
 
@@ -39,6 +44,8 @@
 
 .main-page-container .btn-register {
     height: 40px;
+    padding: 0px 40px 0px 40px;
+    margin-left: calc(50% - 55px);
     border: none;
     border-radius: 5px;
     color: #ffffff;
@@ -47,6 +54,8 @@
 
 .main-page-container .btn-login {
     height: 40px;
+    padding: 0px 40px 0px 40px;
+    margin-left: calc(50% - 55px);
     border: none;
     border-radius: 5px;
     color: #ffffff;
@@ -56,7 +65,7 @@
 .register-container h3, 
 .login-container h3 {
     text-align: center;
-    font-size: 1.5vw;
+    font-size: 16px;
 }
 
 .register-container h3 {
@@ -64,6 +73,12 @@
 }
 
 .login-container h3 {
+    margin-top: 35px;
     color: #535353;
 }
 
+@media (max-width: 1024px) {
+    .main-page-container {
+        width: 90%;
+    }
+}
