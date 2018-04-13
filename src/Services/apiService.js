@@ -5,7 +5,8 @@ import axios from 'axios'
 
 export const apiService = {
     login,
-    logout
+    logout,
+    register
 };
 
 const baseApiUrl = "http://localhost:4000/api/";
@@ -46,6 +47,29 @@ function login(email, password) {
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('token');
+}
+
+function register(email, password, name) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    };
+
+    const body = JSON.stringify(
+        {
+            email,
+            password,
+            name
+        }
+    );
+
+    axios.post(baseApiUrl + 'register', body, requestOptions)
+        .then(function (response) {       
+            console.log("Register ok. ", response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }
 
 function getChains() {

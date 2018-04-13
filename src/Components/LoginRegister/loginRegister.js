@@ -9,14 +9,19 @@ class LoginRegister extends React.Component {
         super(props);
 
         this.state = {
-            userName: '',
-            email: '',
-            password: '',
-            submitted: false
+            registerUserName: '',
+            registerEmail: '',
+            registerPassword: '',
+            registerSubmitted: false,
+            loginUserName: '',
+            loginEmail: '',
+            loginPassword: '',
+            loginSubmitted: false
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.loginHandleSubmit = this.loginHandleSubmit.bind(this);
+        this.registerHandleSubmit = this.registerHandleSubmit.bind(this);
     }
 
     handleChange(e) {
@@ -24,21 +29,37 @@ class LoginRegister extends React.Component {
         this.setState({ [name]: value });
     }
 
-    handleSubmit(e) {
+    loginHandleSubmit(e) {
         e.preventDefault();
-        this.setState({ submitted: true });
-        const { userName, password } = this.state;
+        this.setState({ loginSubmitted: true });
+        const { loginEmail, loginPassword } = this.state;
         const { dispatch } = this.props;
-        if (userName && password) {
-            let returned = apiService.login(userName, password);
+        if (loginEmail && loginPassword) {
+            let returned = apiService.login(loginEmail, loginPassword);
             if (returned) {
+                console.log("Login oldundu... ", returned);
+                return <Redirect to='/' />
+            }
+        }
+    }
+    registerHandleSubmit(e) {
+        e.preventDefault();
+        this.setState({ registerSubmitted: true });
+        const { registerEmail, registerPassword, registerUserName } = this.state;
+        const { dispatch } = this.props;
+        if (registerEmail && registerPassword && registerUserName) {
+            let returned = apiService.register  (registerEmail, registerPassword, registerUserName);
+            if (returned) {
+                console.log("Login oldundu... ", returned);
                 return <Redirect to='/' />
             }
         }
     }
 
+
     render() {
-        const { userName, email, password, submitted } = this.state;
+        const { registerEmail, registerPassword, registerUserName, registerSubmitted } = this.state;
+        const { loginEmail, loginPassword, loginSubmitted } = this.state;
 
         if (this.props.loggingIn === true) {
             return <Redirect to='/' />
@@ -46,65 +67,73 @@ class LoginRegister extends React.Component {
 
         return (
 
-            <div className="main-page-container row col-md-10 offset-2">
-                <div className="register-container col-md-5">
-                <h3>REGISTER</h3>
-                    <form name="form" onSubmit={this.handleSubmit}>
-                        <div className={'form-group' + (submitted && !userName ? ' has-error' : '')}>
-                            <input type="text" 
-                                   className="form-control" 
-                                   name="userName" 
-                                   value={userName} 
-                                   onChange={this.handleChange} 
-                                   placeholder="Username" />
-                            {submitted && !userName &&
+            <div className="main-page-container">
+                <div className="register-container">
+                    <h3>REGISTER</h3>
+                    <form name="register-form" onSubmit={this.registerHandleSubmit}>
+                        <div className={'form-group' + (registerSubmitted && !registerUserName ? ' has-error' : '')}>
+                            <input type="text"
+                                className="form-control"
+                                name="registerUserName"
+                                value={registerUserName}
+                                onChange={this.handleChange}
+                                placeholder="Username" />
+                            {registerSubmitted && !registerUserName &&
                                 <div className="help-block">userName is required</div>
                             }
                         </div>
-                        <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
-                            <input type="email" 
-                                   className="form-control" 
-                                   name="email" 
-                                   value={email} 
-                                   onChange={this.handleChange} 
-                                   placeholder="E-mail" />
-                            {submitted && !email &&
+                        <div className={'form-group' + (registerSubmitted && !registerEmail ? ' has-error' : '')}>
+                            <input type="email"
+                                className="form-control"
+                                name="registerEmail"
+                                value={registerEmail}
+                                onChange={this.handleChange}
+                                placeholder="E-mail" />
+                            {registerSubmitted && !registerEmail &&
                                 <div className="help-block">E-mail is required</div>
                             }
-                        </div><div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
-                            <input type="password" 
-                                   className="form-control" 
-                                   name="password" 
-                                   value={password} 
-                                   onChange={this.handleChange} 
-                                   placeholder="Password" />
-                            {submitted && !password &&
+                        </div><div className={'form-group' + (registerSubmitted && !registerPassword ? ' has-error' : '')}>
+                            <input type="password"
+                                className="form-control"
+                                name="registerPassword"
+                                value={registerPassword}
+                                onChange={this.handleChange}
+                                placeholder="Password" />
+                            {registerSubmitted && !registerPassword &&
                                 <div className="help-block">Password is required</div>
                             }
                         </div>
                         <div className="form-group">
-                            <button className="btn btn-register col-md-4 offset-4">Start</button>
+                            <button className="btn btn-register">Start</button>
                             {this.props.loggingIn}
                         </div>
                     </form>
                 </div>
-                <div className="login-container col-md-4">
-                <h3>LOGIN</h3>
-                    <form name="form" onSubmit={this.handleSubmit}>
-                        <div className={'form-group' + (submitted && !userName ? ' has-error' : '')}>
-                            <input type="text" className="form-control" name="userName" value={userName} onChange={this.handleChange} />
-                            {submitted && !userName &&
-                                <div className="help-block">Username is required</div>
+                <div className="login-container">
+                    <h3>LOGIN</h3>
+                    <form name="login-form" onSubmit={this.loginHandleSubmit}>
+                        <div className={'form-group' + (loginSubmitted && !loginEmail ? ' has-error' : '')}>
+                            <input type="text"
+                                className="form-control"
+                                name="loginEmail"
+                                value={loginEmail}
+                                onChange={this.handleChange} />
+                            {loginSubmitted && !loginEmail &&
+                                <div className="help-block">Email is required</div>
                             }
                         </div>
-                        <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
-                            <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange} />
-                            {submitted && !password &&
+                        <div className={'form-group' + (loginSubmitted && !loginPassword ? ' has-error' : '')}>
+                            <input type="password"
+                                className="form-control"
+                                name="loginPassword"
+                                value={loginPassword}
+                                onChange={this.handleChange} />
+                            {loginSubmitted && !loginPassword &&
                                 <div className="help-block">Password is required</div>
                             }
                         </div>
                         <div className="form-group">
-                            <button className="btn btn-login col-md-4 offset-4">Login</button>
+                            <button className="btn btn-login">Login</button>
                             {this.props.loggingIn}
                         </div>
                     </form>
