@@ -19,7 +19,9 @@ class LoginRegister extends React.Component {
             loginUserName: '',
             loginEmail: '',
             loginPassword: '',
-            loginSubmitted: false
+            loginSubmitted: false,
+            loginMessage: '',
+            registerMessage: '',
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -32,26 +34,23 @@ class LoginRegister extends React.Component {
         this.setState({ [name]: value });
     }
 
-    loginHandleSubmit(e) {
-        e.preventDefault();
-        this.setState({ loginSubmitted: true });
-        const { loginEmail, loginPassword } = this.state;
-        const { dispatch } = this.props;
-        if (loginEmail && loginPassword) {
-            let returned = apiService.login(loginEmail, loginPassword);
-            if (returned) {
-                return <Redirect to='/' />
-            }
-        }
-    }
-
     registerHandleSubmit(e) {
         e.preventDefault();
         this.setState({ registerSubmitted: true });
         const { registerEmail, registerPassword, registerUserName } = this.state;
         const { dispatch } = this.props;
         if (registerEmail && registerPassword && registerUserName) {
-            dispatch(userActions.register(registerEmail, registerPassword, registerUserName))
+            dispatch(userActions.register(registerEmail, registerPassword, registerUserName));
+        }
+    }
+
+    loginHandleSubmit(e) {
+        e.preventDefault();
+        this.setState({ loginSubmitted: true });
+        const { loginEmail, loginPassword } = this.state;
+        const { dispatch } = this.props;
+        if (loginEmail && loginPassword) {
+            dispatch(userActions.login(loginEmail, loginPassword));
         }
     }
 
@@ -63,10 +62,25 @@ class LoginRegister extends React.Component {
         if (this.props.loggingIn === true) {
             return <Redirect to='/' />
         }
-        let button = this.props.loading ? <Loading /> :
-            button =
-            <button className="btn btn-register">Start</button>
-                { this.props.loggingIn }      
+        let registerButton = this.props.loading && !this.props.type ? <Loading /> :
+            registerButton =
+            <div>
+                <button className="btn btn-register">Start</button>
+            </div>
+
+        let loginButton = this.props.loading && this.props.type ? <Loading /> :
+            loginButton =
+            <div>
+                <button className="btn btn-login">Login</button>
+            </div>
+
+        if (this.props.type != null) {
+            if (this.props.type) {
+                this.state.loginMessage = this.props.message;
+            } else {
+                this.state.registerMessage = this.props.message;
+            }
+        }
 
         return (
 
@@ -107,9 +121,9 @@ class LoginRegister extends React.Component {
                             }
                         </div>
                         <div className="form-group">
-                            {button}
+                            {registerButton}
+                            <p>{this.state.registerMessage}</p>
                         </div>
-                        <p>{this.props.message}</p>
                     </form>
                 </div>
                 <div className="login-container">
@@ -135,9 +149,10 @@ class LoginRegister extends React.Component {
                                 <div className="help-block">Password is required</div>
                             }
                         </div>
+
                         <div className="form-group">
-                            <button className="btn btn-login">Login</button>
-                            {this.props.loggingIn}
+                            {loginButton}
+                            <p>{this.state.loginMessage}</p>
                         </div>
                     </form>
                 </div>
@@ -151,6 +166,7 @@ const mapStateToProps = (state) => ({
     loggingIn: state.loginReducer.loggingIn,
     loading: state.loginReducer.loading,
     message: state.loginReducer.message,
+    type: state.loginReducer.type,
 });
 
 LoginRegister = connect(mapStateToProps)(LoginRegister);
