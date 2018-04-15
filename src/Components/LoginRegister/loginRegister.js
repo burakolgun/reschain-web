@@ -66,9 +66,7 @@ class LoginRegister extends React.Component {
         let button = this.props.loading ? <Loading /> :
             button =
             <button className="btn btn-register">Start</button>
-                { this.props.loggingIn }
-
-
+                { this.props.loggingIn }      
 
         return (
 
@@ -111,6 +109,7 @@ class LoginRegister extends React.Component {
                         <div className="form-group">
                             {button}
                         </div>
+                        <p>{this.props.message}</p>
                     </form>
                 </div>
                 <div className="login-container">
@@ -151,6 +150,7 @@ const mapStateToProps = (state) => ({
     userName: state.loginReducer.userName,
     loggingIn: state.loginReducer.loggingIn,
     loading: state.loginReducer.loading,
+    message: state.loginReducer.message,
 });
 
 LoginRegister = connect(mapStateToProps)(LoginRegister);

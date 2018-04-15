@@ -9,6 +9,7 @@ let initialState = token? {
     loggingIn: false,
     requestStatus: '',
     loading: false,
+    message: '',
     userName: '',
 };
 
@@ -22,6 +23,7 @@ export default function loginReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 loading: action.payload.loading,
                 userName: action.payload.name,
+                message: action.payload.message,
             });
         case userConstant.SET_TOKEN:
             return Object.assign({}, state, {
@@ -30,10 +32,12 @@ export default function loginReducer(state = initialState, action) {
         case userConstant.REGISTER_REQUEST:
             return Object.assign({}, state, {
                 loading: action.payload.loading,
+                message: action.payload.message,
             });
         case userConstant.REGISTER_ERROR:
             return Object.assign({}, state, {
                 loading: action.payload.loading,
+                message: action.payload.message,
             });
 
         default: return state

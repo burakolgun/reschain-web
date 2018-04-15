@@ -3,7 +3,7 @@ import { apiService } from "../Services/apiService";
 import { history } from '../Helpers/history';
 
 export const userActions = {
-    register,
+    register,    
 };
 
 function register(mail, pw, name) {
@@ -15,10 +15,10 @@ function register(mail, pw, name) {
                 response => {
                     if (response.data.success) {
                         console.log(userName);
-                        dispatch(success(userName));
+                        dispatch(success(userName, response.data.message));
                     } else {
                         console.log(response.data.error);
-                        dispatch(credentialError());
+                        dispatch(credentialError(response.data.error));
                     }
                 },
                 error => {
@@ -35,21 +35,30 @@ function register(mail, pw, name) {
         }
     }
 
-    function success(userName) {
+    function success(userName, message) {
         return {
             type: userConstant.REGISTER_SUCCESS, payload: {
                 loading: false,
                 name: userName,
+                message: message,
             }
         }
     }
 
-    function failure(error) { return { type: userConstant.REGISTER_FAILURE, error } }
+    function failure(message) {
+        return {
+            type: userConstant.REGISTER_FAILURE, payload: {
+                loading: false,
+                message: message,
+            }
+        }
+    };
 
-    function credentialError() {
+    function credentialError(message) {
         return {
             type: userConstant.REGISTER_ERROR, payload: {
                 loading: false,
+                message: message,
             }
         }
     }
