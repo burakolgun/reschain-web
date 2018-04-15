@@ -59,9 +59,6 @@ class LoginRegister extends React.Component {
         const { registerEmail, registerPassword, registerUserName, registerSubmitted, loading } = this.state;
         const { loginEmail, loginPassword, loginSubmitted } = this.state;
 
-        if (this.props.loggingIn === true) {
-            return <Redirect to='/' />
-        }
         let registerButton = this.props.loading && !this.props.type ? <Loading /> :
             registerButton =
             <div>
@@ -80,6 +77,10 @@ class LoginRegister extends React.Component {
             } else {
                 this.state.registerMessage = this.props.message;
             }
+        }
+
+        if(this.props.loggingIn) {            
+            this.props.history.push("/");
         }
 
         return (

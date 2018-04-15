@@ -40,6 +40,7 @@ function login(mail, pw) {
                         {
                             dispatch(success(response.data.name, response.data.message, true));
                             localStorage.setItem('token', response.data.token);
+                            
                         }
             
                         if (response.data.data.token)

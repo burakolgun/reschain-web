@@ -31,6 +31,7 @@ export default function loginReducer(state = initialState, action) {
                 userName: action.payload.name,
                 message: action.payload.message,
                 type: action.payload.type,
+                loggingIn: true,
 
             });
         case userConstant.REGISTER_REQUEST:
