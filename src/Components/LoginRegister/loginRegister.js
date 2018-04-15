@@ -3,6 +3,8 @@ import './loginRegister.css';
 import { connect } from 'react-redux';
 import { apiService } from '../../Services/apiService'
 import { Redirect } from 'react-router-dom';
+import {alertActions} from '../../Actions/userActions'
+import {userActions} from "../../Actions/userActions";
 
 class LoginRegister extends React.Component {
     constructor(props) {
@@ -37,22 +39,18 @@ class LoginRegister extends React.Component {
         if (loginEmail && loginPassword) {
             let returned = apiService.login(loginEmail, loginPassword);
             if (returned) {
-                console.log("Login oldundu... ", returned);
                 return <Redirect to='/' />
             }
         }
     }
+
     registerHandleSubmit(e) {
         e.preventDefault();
         this.setState({ registerSubmitted: true });
         const { registerEmail, registerPassword, registerUserName } = this.state;
         const { dispatch } = this.props;
         if (registerEmail && registerPassword && registerUserName) {
-            let returned = apiService.register  (registerEmail, registerPassword, registerUserName);
-            if (returned) {
-                console.log("Login oldundu... ", returned);
-                return <Redirect to='/' />
-            }
+            dispatch(userActions.register(registerEmail, registerPassword, registerUserName))
         }
     }
 

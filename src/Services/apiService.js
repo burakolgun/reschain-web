@@ -28,19 +28,16 @@ function login(email, password) {
         .then(function (response) {
             if (response.data.token)
             {
-                console.log(response);
                 localStorage.setItem('token', response.data.token);
             }
 
             if (response.data.data.token)
             {
-                console.log(response, "2");
 
                 localStorage.setItem('token', response.data.data.token);
             }
         })
         .catch(function (error) {
-            console.log(error);
         });
 }
 
@@ -50,6 +47,7 @@ function logout() {
 }
 
 function register(email, password, name) {
+    console.log(email, password, name);
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -63,13 +61,7 @@ function register(email, password, name) {
         }
     );
 
-    axios.post(baseApiUrl + 'register', body, requestOptions)
-        .then(function (response) {       
-            console.log("Register ok. ", response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    return axios.post(baseApiUrl + 'register', body, requestOptions)
 }
 
 function getChains() {
