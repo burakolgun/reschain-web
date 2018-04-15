@@ -1,5 +1,5 @@
 import { userConstant } from '../Constant/userConstant';
-import {apiService} from "../Services/apiService";
+import { apiService } from "../Services/apiService";
 import { history } from '../Helpers/history';
 
 export const userActions = {
@@ -16,12 +16,10 @@ function register(mail, pw, name) {
                     if (response.data.success) {
                         console.log(userName);
                         dispatch(success(userName));
-                        history.push('/');
                     } else {
                         console.log(response.data.error);
-                        alert(response.data.error)
+                        dispatch(credentialError());
                     }
-
                 },
                 error => {
                     dispatch(failure(error));
@@ -29,16 +27,30 @@ function register(mail, pw, name) {
             );
     };
 
-    function request() { return { type: userConstant.REGISTER_REQUEST,  payload: {
-            loading: true,
-        }}
+    function request() {
+        return {
+            type: userConstant.REGISTER_REQUEST, payload: {
+                loading: true,
+            }
+        }
     }
 
-    function success(userName) { return { type: userConstant.REGISTER_SUCCESS, payload: {
-            loading: false,
-            name: userName,
-        }}
+    function success(userName) {
+        return {
+            type: userConstant.REGISTER_SUCCESS, payload: {
+                loading: false,
+                name: userName,
+            }
+        }
     }
 
     function failure(error) { return { type: userConstant.REGISTER_FAILURE, error } }
+
+    function credentialError() {
+        return {
+            type: userConstant.REGISTER_ERROR, payload: {
+                loading: false,
+            }
+        }
+    }
 }

@@ -31,6 +31,10 @@ export default function loginReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 loading: action.payload.loading,
             });
+        case userConstant.REGISTER_ERROR:
+            return Object.assign({}, state, {
+                loading: action.payload.loading,
+            });
 
         default: return state
     }

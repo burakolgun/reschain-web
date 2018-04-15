@@ -3,8 +3,9 @@ import './loginRegister.css';
 import { connect } from 'react-redux';
 import { apiService } from '../../Services/apiService'
 import { Redirect } from 'react-router-dom';
-import {alertActions} from '../../Actions/userActions'
-import {userActions} from "../../Actions/userActions";
+import { alertActions } from '../../Actions/userActions'
+import { userActions } from "../../Actions/userActions";
+import Loading from "../Loading/loading";
 
 class LoginRegister extends React.Component {
     constructor(props) {
@@ -56,12 +57,18 @@ class LoginRegister extends React.Component {
 
 
     render() {
-        const { registerEmail, registerPassword, registerUserName, registerSubmitted } = this.state;
+        const { registerEmail, registerPassword, registerUserName, registerSubmitted, loading } = this.state;
         const { loginEmail, loginPassword, loginSubmitted } = this.state;
 
         if (this.props.loggingIn === true) {
             return <Redirect to='/' />
         }
+        let button = this.props.loading ? <Loading /> :
+            button =
+            <button className="btn btn-register">Start</button>
+                { this.props.loggingIn }
+
+
 
         return (
 
@@ -102,8 +109,7 @@ class LoginRegister extends React.Component {
                             }
                         </div>
                         <div className="form-group">
-                            <button className="btn btn-register">Start</button>
-                            {this.props.loggingIn}
+                            {button}
                         </div>
                     </form>
                 </div>
@@ -144,6 +150,7 @@ class LoginRegister extends React.Component {
 const mapStateToProps = (state) => ({
     userName: state.loginReducer.userName,
     loggingIn: state.loginReducer.loggingIn,
+    loading: state.loginReducer.loading,
 });
 
 LoginRegister = connect(mapStateToProps)(LoginRegister);
