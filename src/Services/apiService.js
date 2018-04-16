@@ -24,21 +24,7 @@ function login(email, password) {
         }
     );
 
-    axios.post(baseApiUrl + 'login', body, requestOptions )
-        .then(function (response) {
-            if (response.data.token)
-            {
-                localStorage.setItem('token', response.data.token);
-            }
-
-            if (response.data.data.token)
-            {
-
-                localStorage.setItem('token', response.data.data.token);
-            }
-        })
-        .catch(function (error) {
-        });
+    return axios.post(baseApiUrl + 'login', body, requestOptions);
 }
 
 function logout() {

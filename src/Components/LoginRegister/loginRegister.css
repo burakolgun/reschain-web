@@ -1,5 +1,5 @@
 .main-page-container {
-    width: 60%;
+    width: 90%;
     display: flex;
     margin: auto;
     margin-bottom: 30px;
@@ -15,13 +15,13 @@
 }
 
 .login-container {
-    width: 40%;
+    width: 400px;
     margin-top: -20px;
     margin-bottom: -20px;
 }
 
 .register-container {
-    width: 60%;
+    width: 400px;
     border: 1px solid rgba(0, 0, 0, 0.35);
 }
 
@@ -30,8 +30,7 @@
     height: 40px;
     border-radius: 5px;
     background-color: #ffffff;
-    border: solid 1px 
-    rgba(0, 0, 0, 0.35);
+    border: solid 1px #BFE0C5;
     margin: 5px;
     margin-left: 5%;
     padding-left: 15px;
@@ -49,7 +48,7 @@
     border: none;
     border-radius: 5px;
     color: #ffffff;
-    background-color: #958ebd;
+    background-color: #3A8C48;
 }
 
 .main-page-container .btn-login {
@@ -69,7 +68,7 @@
 }
 
 .register-container h3 {
-    color: #958ebd;
+    color: #3A8C48;
 }
 
 .login-container h3 {
@@ -82,3 +81,5 @@
         width: 90%;
     }
 }
+
+/* color scala: http://paletton.com/#uid=12S0u0k8Bz91LUp4JKtdhsiiPmV*/
