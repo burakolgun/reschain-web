@@ -1,9 +1,9 @@
 import React from 'react';
 import './loginRegister.css';
 import { connect } from 'react-redux';
-import { apiService } from '../../Services/apiService'
+import { apiService } from '../../Services/apiService';
 import { Redirect } from 'react-router-dom';
-import { alertActions } from '../../Actions/userActions'
+import { alertActions } from '../../Actions/userActions';
 import { userActions } from "../../Actions/userActions";
 import Loading from "../Loading/loading";
 

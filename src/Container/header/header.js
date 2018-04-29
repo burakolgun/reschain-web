@@ -14,7 +14,7 @@ export default class Header extends Component {
         return (
             <header>
                 <div className="logo">
-                    don'tbreakthechain
+                    <img src="./logo.png" />
                 </div>
             </header>
         )
