@@ -4,12 +4,17 @@ header {
     display: flex;
     align-items: center;
     align-content: center;
-    background-color: #7186c7;
+    border-top: 3px solid darkorange;
+    border-bottom: 1px solid #cccccc;
 }
 
-header .logo {
-    color: #fff;
-    font-size: 20px;
+header .logo img {
     padding-left: 30px;
-    letter-spacing: 0.5px;
+    height: 35px;
+    margin-top: 4px;
+}
+
+header a {
+    display: block;
+    float: right;
 }

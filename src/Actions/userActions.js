@@ -5,6 +5,7 @@ import { history } from '../Helpers/history';
 export const userActions = {
     register,
     login,
+    logOut,
 };
 
 function register(mail, pw, name) {
@@ -28,6 +29,13 @@ function register(mail, pw, name) {
     };
 }
 
+function logOut() {
+    return dispatch => {
+        apiService.logout();
+        dispatch(LogOutAction());
+    }
+}
+
 function login(mail, pw) {
     return dispatch => {
         dispatch(request(true));
@@ -38,15 +46,19 @@ function login(mail, pw) {
                     if (response.data.success) {
                         if (response.data.token)
                         {
-                            dispatch(success(response.data.name, response.data.message, true));
+                            dispatch(loginSuccess(response.data.userName, response.data.message, true));
                             localStorage.setItem('token', response.data.token);
-                            
+                            localStorage.setItem('userName', response.data.userName);
+
                         }
             
                         if (response.data.data.token)
                         {
-                            dispatch(success(response.data.name, response.data.message, true));            
+                            console.log(response.data.data.userName);
+                            dispatch(loginSuccess(response.data.data.userName, response.data.data.message, true));
                             localStorage.setItem('token', response.data.data.token);
+                            localStorage.setItem('userName', response.data.data.userName);
+
                         }                        
                     } else {
                         console.log(response.data.error);
@@ -80,6 +92,17 @@ function success(userName, message, type) {
     }
 }
 
+function loginSuccess(userName, message, type) {
+    return {
+        type: userConstant.LOGIN_SUCCESS, payload: {
+            loading: false,
+            name: userName,
+            message: message,
+            type: type,
+        }
+    }
+}
+
 function failure(message, type) {
     return {
         type: userConstant.REGISTER_FAILURE, payload: {
@@ -88,7 +111,7 @@ function failure(message, type) {
             type: type,
         }
     }
-};
+}
 
 function credentialError(message, type) {
     return {
@@ -96,6 +119,14 @@ function credentialError(message, type) {
             loading: false,
             message: message,
             type: type,
+        }
+    }
+}
+
+function LogOutAction() {
+    return {
+        type: userConstant.DELETE_TOKEN, payload: {
+            loggingIn: false,
         }
     }
 }
