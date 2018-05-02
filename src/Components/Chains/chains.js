@@ -29,7 +29,7 @@ class Chains extends Component {
     }
 
     render() {
-        let liItems = [];
+        let allChains = [];
         let days = [];
         let dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     
@@ -39,7 +39,7 @@ class Chains extends Component {
         console.log(firstDayOfMonth);
 
         for (var i = 1; i < this.props.chains.length; i++) {
-            liItems.push(<li key={this.props.chains[i].id}> {this.props.chains[i].name} </li>);
+            allChains.push(<li key={this.props.chains[i].id}> {this.props.chains[i].name} </li>);
         }
 
         for (var j = 0; j < dayNames.length; j++) {
@@ -63,6 +63,11 @@ class Chains extends Component {
                 <ul>
                     {days}
                 </ul>
+                <div className="all-chains">
+                    <ul>
+                        {allChains}
+                    </ul>
+                </div>
             </div>
         );
     }
