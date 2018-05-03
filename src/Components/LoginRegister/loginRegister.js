@@ -94,7 +94,7 @@ class LoginRegister extends React.Component {
                                 onChange={this.handleChange}
                                 placeholder="Username" />
                             {registerSubmitted && !registerUserName &&
-                                <div className="help-block">userName is required</div>
+                                <div className="help-block">user name is required</div>
                             }
                         </div>
                         <div className={'form-group' + (registerSubmitted && !registerEmail ? ' has-error' : '')}>
