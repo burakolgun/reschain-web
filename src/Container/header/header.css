@@ -4,12 +4,33 @@ header {
     display: flex;
     align-items: center;
     align-content: center;
-    background-color: #93c99d;
+    border-top: 3px solid #ff8c00;
+    border-bottom: 1px solid #cccccc;
 }
 
-header .logo {
-    color: #fff;
-    font-size: 20px;
+header .logo img {
     padding-left: 30px;
-    letter-spacing: 0.5px;
+    height: 35px;
+    margin-top: 4px;
+}
+
+header a {
+    float: right;
+    text-decoration: none;
+    color: #3A8C48;
+    /*animation: hoverShine 1.5s ease-out 0s alternate infinite none running;*/
+}
+
+header a:hover {
+    text-decoration: none;
+    color: #3A8C48;
+}
+
+@keyframes hoverShine {
+    from {
+        border-bottom: 0px solid rgba(58, 140, 72, 0);
+    }
+    to {
+        border-bottom: 1px solid rgba(58, 140, 72, 1);
+    }
 }

@@ -6,7 +6,8 @@ import axios from 'axios'
 export const apiService = {
     login,
     logout,
-    register
+    register,
+    getChains,
 };
 
 const baseApiUrl = "http://localhost:4000/api/";
@@ -30,6 +31,7 @@ function login(email, password) {
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('token');
+    console.log("delete token")
 }
 
 function register(email, password, name) {
@@ -55,7 +57,7 @@ function getChains() {
         method: 'GET',
         headers: authHeader(),
     };
-    return fetch('chain', requestOptions).then(handleResponse);
+    return axios.get(baseApiUrl + 'chain', requestOptions); 
 }
 
 function handleResponse(response) {

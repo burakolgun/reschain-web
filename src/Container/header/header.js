@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './header.css';
+import { connect } from "react-redux";
+import { apiService } from "../../Services/apiService";
+import { userActions } from "../../Actions/userActions";
 
-export default class Header extends Component {
-
+class Header extends Component {
     constructor(props) {
         super(props);
 
@@ -10,13 +13,47 @@ export default class Header extends Component {
         };
     }
 
+    logOut = () => {
+        const { dispatch } = this.props;
+        dispatch(userActions.logOut())
+    };
+
     render() {
+        let link = <Link to="/login">Login/Register</Link>;
+
+        if (this.props.loggingIn === true) {
+            link = <div className="col-md-3">
+                <div className="col-md-10">
+                    <h5>Welcome {this.props.userName}</h5>
+                </div>
+                <div className="col-md-2">
+                    <button className="btn btn-secondary" onClick={this.logOut}>
+                        LogOut
+                </button>
+                </div>
+            </div>;
+        }
         return (
             <header>
-                <div className="logo">
-                    don'tbreakthechain
+                <div className="col-md-2 offset-2 logo">
+                    <Link to="/">
+                        <img src={require("../../Asset/img/logo.png")} />
+                    </Link>
                 </div>
+                <div className="col-md-5">
+
+                </div>
+                {link}
             </header>
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    loggingIn: state.loginReducer.loggingIn,
+    userName: state.loginReducer.userName,
+});
+
+Header = connect(mapStateToProps)(Header);
+
+export default Header

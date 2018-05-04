@@ -1,9 +1,11 @@
 import { userConstant } from '../../../Constant/userConstant';
 let token = localStorage.getItem('token');
+let userName = localStorage.getItem('userName');
 
 let initialState = token? {
     token: token,
     loggingIn: true,
+    userName: userName,
 } : {
     token: '',
     userName: '',
@@ -19,6 +21,7 @@ export default function loginReducer(state = initialState, action) {
         case userConstant.SET_TOKEN:
             return Object.assign({}, state, {
                 token: action.payload.token,
+                userName: action.payload.userName
             });
         case userConstant.SET_REQUEST_STATUS:
             return Object.assign({}, state, {
@@ -45,6 +48,16 @@ export default function loginReducer(state = initialState, action) {
                 loading: action.payload.loading,
                 message: action.payload.message,
                 type: action.payload.type,
+            });
+        case userConstant.DELETE_TOKEN:
+            return Object.assign({}, state, {
+                loggingIn: false,
+                userName: '',
+            });
+        case userConstant.LOGIN_SUCCESS:
+            return Object.assign({}, state, {
+                loggingIn: true,
+                userName: action.payload.name,
             });
 
         default: return state

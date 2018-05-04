@@ -1,9 +1,6 @@
 import React from 'react';
 import './loginRegister.css';
 import { connect } from 'react-redux';
-import { apiService } from '../../Services/apiService'
-import { Redirect } from 'react-router-dom';
-import { alertActions } from '../../Actions/userActions'
 import { userActions } from "../../Actions/userActions";
 import Loading from "../Loading/loading";
 
@@ -63,13 +60,13 @@ class LoginRegister extends React.Component {
             registerButton =
             <div>
                 <button className="btn btn-register">Start</button>
-            </div>
+            </div>;
 
         let loginButton = this.props.loading && this.props.type ? <Loading /> :
             loginButton =
             <div>
                 <button className="btn btn-login">Login</button>
-            </div>
+            </div>;
 
         if (this.props.type != null) {
             if (this.props.type) {
@@ -97,7 +94,7 @@ class LoginRegister extends React.Component {
                                 onChange={this.handleChange}
                                 placeholder="Username" />
                             {registerSubmitted && !registerUserName &&
-                                <div className="help-block">userName is required</div>
+                                <div className="help-block">user name is required</div>
                             }
                         </div>
                         <div className={'form-group' + (registerSubmitted && !registerEmail ? ' has-error' : '')}>
