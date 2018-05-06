@@ -22,28 +22,23 @@ class Header extends Component {
         let link = <Link to="/login">Login/Register</Link>;
 
         if (this.props.loggingIn === true) {
-            link = <div className="col-md-3">
-                <div className="col-md-10">
-                    <h5>Welcome {this.props.userName}</h5>
-                </div>
-                <div className="col-md-2">
-                    <button className="btn btn-secondary" onClick={this.logOut}>
-                        LogOut
-                </button>
-                </div>
+            link = <div>
+                <span>Welcome {this.props.userName}</span>
+                <button className="btn btn-secondary" onClick={this.logOut}>Log out</button>
             </div>;
         }
         return (
             <header>
-                <div className="col-md-2 offset-2 logo">
-                    <Link to="/">
-                        <img src={require("../../Asset/img/logo.png")} />
-                    </Link>
+                <div className="container">
+                    <div className="logo">
+                        <Link to="/">
+                            <img src={require("../../Asset/img/logo.png")} />
+                        </Link>
+                    </div>
+                    <div className="header-right">
+                        {link}
+                    </div>
                 </div>
-                <div className="col-md-5">
-
-                </div>
-                {link}
             </header>
         )
     }

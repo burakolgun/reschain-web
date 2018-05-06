@@ -26,27 +26,6 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.register-container .help-block, .login-container .help-block {
-    margin-left: 5%;
-    color: #dd0000;
-}
-
-.main-page-container input {
-    width: 90%;
-    height: 40px;
-    border-radius: 2px;
-    background-color: #ffffff;
-    border: solid 1px rgba(0, 0, 0, 0.1);
-    margin: 5px;
-    margin-left: 5%;
-    padding-left: 15px;
-}
-
-.main-page-container input:focus {
-    background-color: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.35);
-}
-
 .main-page-container .btn-register {
     height: 40px;
     padding: 0px 40px 0px 40px;
