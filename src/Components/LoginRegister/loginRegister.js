@@ -77,7 +77,7 @@ class LoginRegister extends React.Component {
         }
 
         if(this.props.loggingIn) {            
-            this.props.history.push("/");
+            this.props.history.push("/chain");
         }
 
         return (
