@@ -22,9 +22,20 @@ class Header extends Component {
         let link = <Link to="/login">Login/Register</Link>;
 
         if (this.props.loggingIn === true) {
-            link = <div>
-                <span>Welcome {this.props.userName}</span>
-                <button className="btn btn-secondary" onClick={this.logOut}>Log out</button>
+            link = <div className="col-md-12">
+                <div className="col-md-10">
+                    <h5>Welcome {this.props.userName}</h5>
+                </div>
+                <div className="col-md-2">
+                    <button className="btn btn-secondary" onClick={this.logOut}>
+                        LogOut
+                </button>
+                </div>
+                <div className="col-md-3">
+                    <Link to="/my-chains">
+                        My Chains
+                    </Link>
+                </div>
             </div>;
         }
         return (

@@ -7,6 +7,7 @@ import Footer from "../Container/footer/footer";
 import Content from "../Container/content/content";
 import LoginRegister from "./LoginRegister/loginRegister";
 import Chains from "./Chains/chains";
+import MyChains from "./Chains/my-chains";
 
 class App extends Component {
     constructor(props) {
@@ -22,6 +23,7 @@ class App extends Component {
                         <Route exact path='/' component={Marketing} />
                         <Route path='/login' component={LoginRegister} />
                         <Route path='/chain' component={Chains} />
+                        <Route path='/my-chains' component={MyChains} />
                     </Switch>
                 </Content>
                 <Footer />

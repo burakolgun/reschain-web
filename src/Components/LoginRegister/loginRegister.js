@@ -57,13 +57,11 @@ class LoginRegister extends React.Component {
         const { loginEmail, loginPassword, loginSubmitted } = this.state;
 
         let registerButton = this.props.loading && !this.props.type ? <Loading /> :
-            registerButton =
             <div>
                 <button className="btn btn-register">Start</button>
             </div>;
 
         let loginButton = this.props.loading && this.props.type ? <Loading /> :
-            loginButton =
             <div>
                 <button className="btn btn-login">Login</button>
             </div>;
@@ -76,8 +74,11 @@ class LoginRegister extends React.Component {
             }
         }
 
-        if(this.props.loggingIn) {            
-            this.props.history.push("/chain");
+        if(this.props.loggingIn &&
+           (localStorage.getItem('token') != null ||
+           localStorage.getItem('token') != undefined)) 
+           {            
+            this.props.history.push("/my-chains");
         }
 
         return (
@@ -160,7 +161,6 @@ class LoginRegister extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    userName: state.loginReducer.userName,
     loggingIn: state.loginReducer.loggingIn,
     loading: state.loginReducer.loading,
     message: state.loginReducer.message,
