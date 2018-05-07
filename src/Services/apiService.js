@@ -10,7 +10,7 @@ export const apiService = {
     getChains,
 };
 
-const baseApiUrl = "http://localhost:4000/api/";
+const baseApiUrl = "http://www.reschain.com/api/";
 
 function login(email, password) {
     const requestOptions = {

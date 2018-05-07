@@ -21,7 +21,8 @@ export default function loginReducer(state = initialState, action) {
         case userConstant.SET_TOKEN:
             return Object.assign({}, state, {
                 token: action.payload.token,
-                userName: action.payload.userName
+                userName: action.payload.userName,
+                loading: action.payload.loading,
             });
         case userConstant.SET_REQUEST_STATUS:
             return Object.assign({}, state, {
@@ -58,6 +59,7 @@ export default function loginReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 loggingIn: true,
                 userName: action.payload.name,
+                loading: action.payload.loading,
             });
 
         default: return state

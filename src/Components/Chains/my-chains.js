@@ -31,7 +31,6 @@ class MyChains extends Component {
                     <th>{this.props.chains[i].endDate}</th>
                     <th>{this.props.chains[i].note}</th>
 
-
                     <th>
                         <button hidden={!this.props.chains[i].default} type="button" className="btn btn-info">Default</button>
                         <button hidden={this.props.chains[i].default} type="button" className="btn btn-outline-info">Default</button>
