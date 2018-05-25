@@ -74,12 +74,10 @@ class LoginRegister extends React.Component {
             }
         }
 
-        if(this.props.loggingIn &&
-           (localStorage.getItem('token') != null ||
-           localStorage.getItem('token') != undefined)) 
+        if(this.props.loggingIn)
            {            
-            this.props.history.push("/my-chains");
-        }
+            this.props.history.push("/chain");
+          }
 
         return (
 

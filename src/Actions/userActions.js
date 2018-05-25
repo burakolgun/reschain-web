@@ -31,8 +31,22 @@ function register(mail, pw, name) {
 
 function logOut() {
     return dispatch => {
-        apiService.logout();
-        dispatch(LogOutAction());
+        apiService.logout()
+        .then(
+            response => {
+                if (response.data.success) {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('userName');                  
+                    dispatch(LogOutAction());
+                } else {
+                    console.log(response.data.message)
+                }
+            },
+            error => {
+                dispatch(failure(error));
+            }
+        )
+        
     }
 }
 

@@ -10,7 +10,7 @@ export const apiService = {
     getChains,
 };
 
-const baseApiUrl = "http://localhost:4000/api/";
+const baseApiUrl = "http://www.reschain.com/api/";
 
 function login(email, password) {
     const requestOptions = {
@@ -30,8 +30,11 @@ function login(email, password) {
 
 function logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('token');
-    console.log("delete token")
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader(),
+    };
+    return axios.get(baseApiUrl + 'logout', requestOptions);
 }
 
 function register(email, password, name) {
