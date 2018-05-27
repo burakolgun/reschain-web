@@ -20,7 +20,6 @@ class MyChains extends Component {
     render() {
 
         let tbody = [];
-        console.log(this.props.chains + "qwewqe");
 
         for (let i = 0; i < this.props.chains.length; i++) {
             tbody.push(

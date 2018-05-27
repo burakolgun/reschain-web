@@ -10,13 +10,16 @@ class Chains extends Component {
     constructor(props) {
         super(props);
 
+        if (!props.loggingIn) {
+            props.history.push('/login');
+        }
+
         this.state = {
             chains: [],
         }
 
         this.getChains = this.getChains.bind(this);
         this.openRingInfo = this.openRingInfo.bind(this);
-        this.getChains();
     }
 
     getChains() {
@@ -29,6 +32,11 @@ class Chains extends Component {
     }
 
     render() {
+
+        if (!this.props.loggingIn) {
+            this.props.history.push('/login');
+        }
+
         let allChains = [];
         let days = [];
         let dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -76,6 +84,7 @@ class Chains extends Component {
 
 const mapStateToProps = (state) => ({
     chains: state.chainReducer.chains,
+    loggingIn: state.loginReducer.loggingIn,
 });
 
 Chains = connect(mapStateToProps)(Chains);
