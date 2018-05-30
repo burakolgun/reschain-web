@@ -4,7 +4,8 @@ import { apiService } from '../Services/apiService';
 
 export const chainActions = {
     getChains,
-}
+    deleteChain,
+};
 
 function getChains() {
     return dispatch => {
@@ -14,6 +15,26 @@ function getChains() {
                 response => {
                     if (response.data) {
                         dispatch(success(response.data));
+                    } else {
+                        credentialError(response.data.error);
+                    }
+                },
+                error => {
+                    dispatch(failure(error));
+                }
+            )
+    }
+}
+
+function deleteChain(id) {
+    return dispatch => {
+        dispatch(request);
+        apiService.deleteChain(id)
+            .then(
+                response => {
+                    if (response.data) {
+                        dispatch(success(response.data));
+                        dispatch(chainActions.getChains());
                     } else {
                         credentialError(response.data.error);
                     }

@@ -8,9 +8,10 @@ export const apiService = {
     logout,
     register,
     getChains,
+    deleteChain,
 };
 
-const baseApiUrl = "http://www.reschain.com/api/";
+const baseApiUrl = "http://35.205.39.208/api/";
 
 function login(email, password) {
     const requestOptions = {
@@ -61,6 +62,14 @@ function getChains() {
         headers: authHeader(),
     };
     return axios.get(baseApiUrl + 'chain', requestOptions); 
+}
+
+function deleteChain(id) {
+    const requestOptions = {
+        method: 'DELETE',
+        headers: authHeader(),
+    };
+    return axios.delete(baseApiUrl + 'chain/' + id, requestOptions);
 }
 
 function handleResponse(response) {
