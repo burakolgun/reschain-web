@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { alertActions } from '../../Actions/userActions';
+import {alertActions} from '../../Actions/userActions';
 import { chainActions } from '../../Actions/chainActions';
 import './chains.css';
 
@@ -17,10 +17,13 @@ class MyChains extends Component {
         dispatch(chainActions.getChains());
     }
 
+    deleteChain = (id, e) => {
+        const { dispatch } = this.props;
+        dispatch(chainActions.deleteChain(id))
+    };
+
     render() {
-
         let tbody = [];
-
         for (let i = 0; i < this.props.chains.length; i++) {
             tbody.push(
                 <tr key={this.props.chains[i].id}>
@@ -40,7 +43,15 @@ class MyChains extends Component {
                     </th>
 
                     <th>
-                        <button type="button" className="btn btn-danger">Danger</button>
+                        <button type="button" 
+                            className="btn btn-danger"
+                            onClick={
+                                (e) => {if (window.confirm('Are you sure you wish to delete this item?'))
+                                    this.deleteChain(this.props.chains[i].id, e)
+                                }
+                            }>
+                            Delete!
+                        </button>
                     </th>
                 </tr>
             );
