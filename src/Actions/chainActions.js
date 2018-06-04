@@ -5,12 +5,32 @@ import { apiService } from '../Services/apiService';
 export const chainActions = {
     getChains,
     deleteChain,
+    postChain,
 };
 
 function getChains() {
     return dispatch => {
         dispatch(request);
         apiService.getChains()
+            .then(
+                response => {
+                    if (response.data) {
+                        dispatch(success(response.data));
+                    } else {
+                        credentialError(response.data.error);
+                    }
+                },
+                error => {
+                    dispatch(failure(error));
+                }
+            )
+    }
+}
+
+function postChain(chain, id) {
+    return dispatch => {
+        dispatch(request);
+        apiService.postChain(chain, id)
             .then(
                 response => {
                     if (response.data) {
@@ -76,7 +96,7 @@ function failure(message) {
             type: type,
         }
     }
-};
+}
 
 function credentialError(message) {
     let type;

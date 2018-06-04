@@ -47,3 +47,12 @@
 .mark-day-name {
     border-bottom: 1px solid #777777;
 }
+
+.modal-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}

@@ -9,6 +9,7 @@ export const apiService = {
     register,
     getChains,
     deleteChain,
+    postChain,
 };
 
 const baseApiUrl = "http://35.205.39.208/api/";
@@ -27,6 +28,21 @@ function login(email, password) {
     );
 
     return axios.post(baseApiUrl + 'login', body, requestOptions);
+}
+
+function postChain(chain, id) {
+    const requestOptions = {
+        method: 'POST',
+        headers: authHeader(),
+    };
+
+    console.log(chain);
+
+    const body = JSON.stringify(
+        chain
+    );
+
+    return axios.post(baseApiUrl + 'chain/' + id , body, requestOptions);
 }
 
 function logout() {
