@@ -10,6 +10,7 @@ export const apiService = {
     getChains,
     deleteChain,
     postChain,
+    doDefault,
 };
 
 const baseApiUrl = "http://35.205.39.208/api/";
@@ -78,6 +79,14 @@ function getChains() {
         headers: authHeader(),
     };
     return axios.get(baseApiUrl + 'chain', requestOptions); 
+}
+
+function doDefault(id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader(),
+    };
+    return axios.get(baseApiUrl + 'chain/do-default/' + id, requestOptions);
 }
 
 function deleteChain(id) {

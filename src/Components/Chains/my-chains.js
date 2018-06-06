@@ -39,7 +39,6 @@ class MyChains extends Component {
     }
 
     openModal(e, chain) {
-        console.log(chain);
         this.setState({
             name: chain.name,
             startDate: chain.startDate,
@@ -67,11 +66,16 @@ class MyChains extends Component {
 
     deleteChain = (e, id) => {
         const { dispatch } = this.props;
-        dispatch(chainActions.deleteChain(id))
+        dispatch(chainActions.deleteChain(id));
     };
 
     createChain = (id, e) => {
         const { dispatch } = this.props;
+    };
+
+    doDefault = (id, e) => {
+        const { dispatch } = this.props;
+        dispatch(chainActions.doDefault(id));
     };
 
     handleChange(event, name) {
@@ -125,8 +129,19 @@ class MyChains extends Component {
                     <th>{this.props.chains[i].note}</th>
 
                     <th>
-                        <button hidden={!this.props.chains[i].default} type="button" className="btn btn-info">Default</button>
-                        <button hidden={this.props.chains[i].default} type="button" className="btn btn-outline-info">Default</button>
+                        <button hidden={!this.props.chains[i].default}
+                                type="button" className="btn btn-info"
+                            >Default
+                        </button>
+                        <button hidden={this.props.chains[i].default}
+                                type="button" className="btn btn-outline-info"
+                                onClick={
+                                    (e) => {
+                                        this.doDefault(this.props.chains[i].id, e)
+                                    }
+                                }
+                        >Default
+                        </button>
                     </th>
 
                     <th>
@@ -191,8 +206,9 @@ class MyChains extends Component {
                 {modal}
                 <h2>MY-CHAINS</h2>
                 <div className="table-responsive">
+                    <button type="button" className="btn btn-primary btn-lg btn-block">ADD NEW CHAIN</button>
                     <table className="table">
-                        <caption>www.reschain.com</caption>
+                        <caption>www.reschain.co</caption>
                         <thead className="thead-dark">
                         <tr>
                             <th scope="col">#</th>

@@ -6,6 +6,7 @@ export const chainActions = {
     getChains,
     deleteChain,
     postChain,
+    doDefault
 };
 
 function getChains() {
@@ -50,6 +51,26 @@ function deleteChain(id) {
     return dispatch => {
         dispatch(request);
         apiService.deleteChain(id)
+            .then(
+                response => {
+                    if (response.data) {
+                        dispatch(success(response.data));
+                        dispatch(chainActions.getChains());
+                    } else {
+                        credentialError(response.data.error);
+                    }
+                },
+                error => {
+                    dispatch(failure(error));
+                }
+            )
+    }
+}
+
+function doDefault(id) {
+    return dispatch => {
+        dispatch(request);
+        apiService.doDefault(id)
             .then(
                 response => {
                     if (response.data) {
