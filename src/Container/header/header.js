@@ -21,26 +21,21 @@ class Header extends Component {
         let link = <Link to="/login">Login/Register</Link>;
 
         if (this.props.loggingIn === true) {
-            link = <div className="container-fluid">
-                        <span className="">
+            link = <div className="container">
+                        <span>
                             <h5>Welcome {this.props.userName}</h5>
                         </span>
-                        <span className="d-inline-block header-right">
+                        <span>
                             <button className="btn btn-secondary btn-sm" onClick={this.logOut}>
                                 LogOut
                             </button>
                         </span>
-                        <div className="">
-                            <Link to="/my-chains">
-                                My Chains
-                            </Link>
-                        </div>
                   </div>;
         }
 
         return (
             <header>
-                <div>
+                <div className="navbar">
                     <div className="logo">
                         <Link to="/">
                             <img src={require("../../Asset/img/logo.png")} />

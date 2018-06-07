@@ -1,6 +1,4 @@
 header {
-    width: 100%;
-    height: 60px;
     border-top: 3px solid #ff8c00;
     border-bottom: 1px solid #cccccc;
 }
@@ -11,33 +9,4 @@ header .logo {
 
 header .logo img {
     height: 35px;
-    margin-top: 4px;
-}
-
-header .header-right {
-    float: right;
-}
-
-header .header-right button {
-    float: right;
-}
-
-header .header-right a {
-    text-decoration: none;
-    color: #3A8C48;
-    line-height: 60px;
-    /*animation: hoverShine 1.5s ease-out 0s alternate infinite none running;*/
-}
-
-header .span {
-    display: block;
-}
-
-@keyframes hoverShine {
-    from {
-        border-bottom: 0px solid rgba(58, 140, 72, 0);
-    }
-    to {
-        border-bottom: 1px solid rgba(58, 140, 72, 1);
-    }
 }
