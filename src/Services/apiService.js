@@ -37,8 +37,6 @@ function postChain(chain, id) {
         headers: authHeader(),
     };
 
-    console.log(chain);
-
     const body = JSON.stringify(
         chain
     );
@@ -52,11 +50,11 @@ function logout() {
         method: 'GET',
         headers: authHeader(),
     };
+
     return axios.get(baseApiUrl + 'logout', requestOptions);
 }
 
 function register(email, password, name) {
-    console.log(email, password, name);
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -78,6 +76,7 @@ function getChains() {
         method: 'GET',
         headers: authHeader(),
     };
+
     return axios.get(baseApiUrl + 'chain', requestOptions); 
 }
 
@@ -86,6 +85,7 @@ function doDefault(id) {
         method: 'GET',
         headers: authHeader(),
     };
+
     return axios.get(baseApiUrl + 'chain/do-default/' + id, requestOptions);
 }
 
@@ -94,7 +94,17 @@ function deleteChain(id) {
         method: 'DELETE',
         headers: authHeader(),
     };
+
     return axios.delete(baseApiUrl + 'chain/' + id, requestOptions);
+}
+
+function checkToken(token) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader(),
+    };
+
+    return axios.get(baseApiUrl + 'test', requestOptions);
 }
 
 function handleResponse(response) {

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
 import { connect } from "react-redux";
-import { apiService } from "../../Services/apiService";
 import { userActions } from "../../Actions/userActions";
 
 class Header extends Component {
@@ -22,31 +21,32 @@ class Header extends Component {
         let link = <Link to="/login">Login/Register</Link>;
 
         if (this.props.loggingIn === true) {
-            link = <div className="col-md-12">
-                <div className="col-md-10">
-                    <h5>Welcome {this.props.userName}</h5>
-                </div>
-                <div className="col-md-2">
-                    <button className="btn btn-secondary" onClick={this.logOut}>
-                        LogOut
-                </button>
-                </div>
-                <div className="col-md-3">
-                    <Link to="/my-chains">
-                        My Chains
-                    </Link>
-                </div>
-            </div>;
+            link = <div className="container-fluid">
+                        <span className="">
+                            <h5>Welcome {this.props.userName}</h5>
+                        </span>
+                        <span className="d-inline-block header-right">
+                            <button className="btn btn-secondary btn-sm" onClick={this.logOut}>
+                                LogOut
+                            </button>
+                        </span>
+                        <div className="">
+                            <Link to="/my-chains">
+                                My Chains
+                            </Link>
+                        </div>
+                  </div>;
         }
+
         return (
             <header>
-                <div className="container">
+                <div>
                     <div className="logo">
                         <Link to="/">
                             <img src={require("../../Asset/img/logo.png")} />
                         </Link>
                     </div>
-                    <div className="header-right">
+                    <div className="">
                         {link}
                     </div>
                 </div>

@@ -16,19 +16,14 @@ class Chains extends Component {
 
         this.state = {
             chains: [],
-        }
+        };
 
         this.getChains = this.getChains.bind(this);
-        this.openRingInfo = this.openRingInfo.bind(this);
     }
 
     getChains() {
         const { dispatch } = this.props;
         dispatch(chainActions.getChains());
-    }
-
-    openRingInfo() {
-        console.log('this is:', this);
     }
 
     render() {
@@ -40,11 +35,8 @@ class Chains extends Component {
         let allChains = [];
         let days = [];
         let dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    
         let date = new Date;
         let today = date.getDate();
-        let firstDayOfMonth = date.getDay();
-        console.log(firstDayOfMonth);
 
         for (var i = 1; i < this.props.chains.length; i++) {
             allChains.push(<li key={this.props.chains[i].id}> {this.props.chains[i].name} </li>);
@@ -63,24 +55,15 @@ class Chains extends Component {
             }
         }
 
-
-
-
         return (
             <div className="calender-container">
                 <ul>
                     {days}
                 </ul>
-                <div className="all-chains">
-                    <ul>
-                        {allChains}
-                    </ul>
-                </div>
             </div>
         );
     }
 }
-
 
 const mapStateToProps = (state) => ({
     chains: state.chainReducer.chains,
@@ -88,6 +71,5 @@ const mapStateToProps = (state) => ({
 });
 
 Chains = connect(mapStateToProps)(Chains);
-
 
 export default Chains;

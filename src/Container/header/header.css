@@ -18,16 +18,8 @@ header .header-right {
     float: right;
 }
 
-header .header-right div {
-    margin-top: 10px;
-}
-
 header .header-right button {
     float: right;
-}
-
-header .header-right span {
-    margin-top: 12px;
 }
 
 header .header-right a {
@@ -37,9 +29,8 @@ header .header-right a {
     /*animation: hoverShine 1.5s ease-out 0s alternate infinite none running;*/
 }
 
-header .header-right a:hover {
-    text-decoration: none;
-    color: #3A8C48;
+header .span {
+    display: block;
 }
 
 @keyframes hoverShine {

@@ -51,7 +51,6 @@ class LoginRegister extends React.Component {
         }
     }
 
-
     render() {
         const { registerEmail, registerPassword, registerUserName, registerSubmitted, loading } = this.state;
         const { loginEmail, loginPassword, loginSubmitted } = this.state;
@@ -166,5 +165,4 @@ const mapStateToProps = (state) => ({
 });
 
 LoginRegister = connect(mapStateToProps)(LoginRegister);
-
 export default LoginRegister;

@@ -116,7 +116,6 @@ class MyChains extends Component {
         this.closeModal();
     }
 
-
     render() {
         let tbody = [];
         for (let i = 0; i < this.props.chains.length; i++) {
@@ -229,15 +228,11 @@ class MyChains extends Component {
             </div>
         );
     }
-
 }
-
 
 const mapStateToProps = (state) => ({
     chains: state.chainReducer.chains,
 });
 
 MyChains = connect(mapStateToProps)(MyChains);
-
-
 export default MyChains;

@@ -34,9 +34,9 @@ function logOut() {
         apiService.logout()
         .then(
             response => {
+                localStorage.removeItem('token');
+                localStorage.removeItem('userName');
                 if (response.data.success) {
-                    localStorage.removeItem('token');
-                    localStorage.removeItem('userName');                  
                     dispatch(LogOutAction());
                 } else {
                     console.log(response.data.message)
