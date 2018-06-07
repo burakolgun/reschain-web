@@ -237,6 +237,7 @@ class MyChains extends Component {
 
 const mapStateToProps = (state) => ({
     chains: state.chainReducer.chains,
+    loggingIn: state.loginReducer.loggingIn,
 });
 
 MyChains = connect(mapStateToProps)(MyChains);
