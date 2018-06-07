@@ -117,6 +117,11 @@ class MyChains extends Component {
     }
 
     render() {
+
+        if (!this.props.loggingIn) {
+            this.props.history.push('/login');
+        }
+
         let tbody = [];
         for (let i = 0; i < this.props.chains.length; i++) {
             tbody.push(
