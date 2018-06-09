@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
 import { connect } from "react-redux";
-import { userActions } from "../../Actions/userActions";
+import LongMenu from "../../Components/Menu/longMenu";
 
 class Header extends Component {
     constructor(props) {
@@ -12,38 +12,28 @@ class Header extends Component {
         };
     }
 
-    logOut = () => {
-        const { dispatch } = this.props;
-        dispatch(userActions.logOut())
-    };
-
     render() {
-        let link = <Link to="/login">Login/Register</Link>;
+        let navigation =
+            <div>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+            </div>;
 
         if (this.props.loggingIn === true) {
-            link = <div className="container">
-                        <span>
-                            <h5>Welcome {this.props.userName}</h5>
-                        </span>
-                        <span>
-                            <button className="btn btn-secondary btn-sm" onClick={this.logOut}>
-                                LogOut
-                            </button>
-                        </span>
-                  </div>;
+            navigation = <div className="col-md-1">
+                        <LongMenu/>
+            </div>;
         }
 
         return (
-            <header>
-                <div className="navbar">
-                    <div className="logo">
+            <header className="container-fluid">
+                <div className="navbar col-md-12">
+                    <div className="logo col-md-11">
                         <Link to="/">
-                            <img src={require("../../Asset/img/logo.png")} />
+                            <img src={require("../../Asset/img/logo.png")}  alt="logo"/>
                         </Link>
                     </div>
-                    <div className="">
-                        {link}
-                    </div>
+                    {navigation}
                 </div>
             </header>
         )

@@ -10,3 +10,7 @@ header .logo {
 header .logo img {
     height: 35px;
 }
+
+.rightFull {
+    float: right;
+}
