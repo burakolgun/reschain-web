@@ -5,8 +5,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {userActions} from "../../Actions/userActions";
 import '../../Container/header/header.css';
-import {connect} from "react-redux";
 import { Link } from 'react-router-dom';
+import {connect} from "react-redux";
 
 const options = [
     'Calendar',
@@ -97,5 +97,11 @@ class LongMenu extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    loggingIn: state.loginReducer.loggingIn,
+});
+
+LongMenu = connect(mapStateToProps)(LongMenu);
 
 export default LongMenu;
