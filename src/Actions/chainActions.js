@@ -6,7 +6,8 @@ export const chainActions = {
     getChains,
     deleteChain,
     postChain,
-    doDefault
+    doDefault,
+    newChain,
 };
 
 function getChains() {
@@ -32,6 +33,25 @@ function postChain(chain, id) {
     return dispatch => {
         dispatch(request);
         apiService.postChain(chain, id)
+            .then(
+                response => {
+                    if (response.data) {
+                        dispatch(success(response.data));
+                    } else {
+                        credentialError(response.data.error);
+                    }
+                },
+                error => {
+                    dispatch(failure(error));
+                }
+            )
+    }
+}
+
+function newChain(chain) {
+    return dispatch => {
+        dispatch(request);
+        apiService.newChain(chain)
             .then(
                 response => {
                     if (response.data) {

@@ -21,8 +21,8 @@ class App extends Component {
                         <Route exact path='/' component={Marketing} />
                         <Route path='/login' component={Login} />
                         <Route path='/register' component={Register} />
-                        <Route path='/chain' component={Chains} />
-                        <Route path='/my-chains' component={MyChains} />
+                        <Route path='/calendar' component={Chains} />
+                        <Route path='/chains' component={MyChains} />
                     </Switch>
                 </Content>
                 <Footer />

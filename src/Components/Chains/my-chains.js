@@ -3,6 +3,21 @@ import { connect } from 'react-redux';
 import { chainActions } from '../../Actions/chainActions';
 import Modal from 'react-modal';
 import './chains.css';
+import {withStyles} from "@material-ui/core/styles/index";
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItem from '@material-ui/core/ListItem';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import CloseIcon from '@material-ui/icons/Close';
+import Slide from '@material-ui/core/Slide';
+import TextField from '@material-ui/core/TextField';
 
 const customStyles = {
     content : {
@@ -14,6 +29,19 @@ const customStyles = {
         transform             : 'translate(-50%, -50%)'
     }
 };
+
+const styles = {
+    appBar: {
+        position: 'relative',
+    },
+    flex: {
+        flex: 1,
+    },
+};
+
+function Transition(props) {
+    return <Slide direction="up" {...props} />;
+}
 
 Modal.setAppElement('body');
 
@@ -43,7 +71,8 @@ class MyChains extends Component {
             startDate: chain.startDate,
             endDate: chain.endDate,
             note:chain.note,
-            id: chain.id
+            id: chain.id,
+            open: false,
         });
 
         this.setState({modalIsOpen: true});
@@ -78,44 +107,66 @@ class MyChains extends Component {
     };
 
     handleChange(event, name) {
-        console.log(name);
         if (name === 'name') {
             this.setState({name: event.target.value});
         }
 
         if (name === 'startDate') {
-            console.log( event.target.value);
             this.setState({startDate: event.target.value});
         }
 
         if (name === 'endDate') {
-            console.log( event.target.value);
             this.setState({endDate: event.target.value});
         }
 
         if (name === 'note') {
-            console.log( event.target.value);
             this.setState({note: event.target.value});
         }
     }
 
     handleSubmit(event) {
         const { dispatch } = this.props;
-        dispatch(chainActions.postChain(
-            {
-                name: this.state.name,
-                startDate: this.state.startDate,
-                endDate: this.state.endDate,
-                note: this.state.note,
-        },
-            this.state.id)
-        );
+        if (this.state.id === -1) {
+            dispatch(chainActions.newChain(
+                {
+                    name: this.state.name,
+                    startDate: this.state.startDate,
+                    endDate: this.state.endDate,
+                    note: this.state.note,
+                }))
+        } else {
+            dispatch(chainActions.postChain(
+                {
+                    name: this.state.name,
+                    startDate: this.state.startDate,
+                    endDate: this.state.endDate,
+                    note: this.state.note,
+                },
+                this.state.id)
+            );
+        }
         event.preventDefault();
 
         this.closeModal();
     }
 
+    handleClickOpen = () => {
+        this.setState({
+            name: '',
+            startDate: '',
+            endDate: '',
+            note: '',
+            open: true,
+            id: -1
+        });
+    };
+
+    handleClose = () => {
+        this.setState({ open: false });
+    };
+
     render() {
+        const { classes } = this.props;
 
         if (!this.props.loggingIn) {
             this.props.history.push('/login');
@@ -209,7 +260,66 @@ class MyChains extends Component {
                 {modal}
                 <h2>MY-CHAINS</h2>
                 <div className="table-responsive">
-                    <button type="button" className="btn btn-primary btn-lg btn-block">ADD NEW CHAIN</button>
+                    <div>
+                        <Button variant="contained" color="primary" className="btn btn-lg btn-block" onClick={this.handleClickOpen}>ADD NEW CHAIN</Button>
+                        <Dialog
+                            fullScreen
+                            open={this.state.open}
+                            onClose={this.handleClose}
+                            TransitionComponent={Transition}
+                        >
+                            <AppBar className={classes.appBar}>
+                                <Toolbar>
+                                    <IconButton color="inherit" onClick={this.handleClose} aria-label="Close">
+                                        <CloseIcon />
+                                    </IconButton>
+                                    <Typography variant="title" color="inherit" className={classes.flex}>
+                                        Sound
+                                    </Typography>
+                                    <Button color="inherit" onClick={this.handleSubmit}>
+                                        save
+                                    </Button>
+                                </Toolbar>
+                            </AppBar>
+                            <List>
+                                <ListItem>
+                                    <TextField
+                                        autoFocus
+                                        margin="dense"
+                                        id="name"
+                                        label="Chain Name"
+                                        type="text"
+                                        fullWidth
+                                        value={this.state.name}
+                                        onChange={(e) => {this.handleChange(e, 'name')}}
+                                    />
+                                </ListItem>
+                                <Divider />
+                                <ListItem>
+                                    <ListItemText primary="Start Date" secondary="Today" />
+                                    <input type="date" value={this.state.startDate} onChange={(e) => {this.handleChange(e, 'startDate')}} />
+                                </ListItem>
+                                <Divider />
+                                <ListItem>
+                                    <ListItemText primary="End Date" secondary="Today" />
+                                    <input type="date" value={this.state.endDate} onChange={(e) => {this.handleChange(e, 'endDate')}} />
+                                </ListItem>
+                                <Divider />
+                                <ListItem>
+                                    <TextField
+                                        autoFocus
+                                        margin="dense"
+                                        id="name"
+                                        label="Chain Note"
+                                        type="text"
+                                        fullWidth
+                                        value={this.state.note}
+                                        onChange={(e) => {this.handleChange(e, 'note')}}
+                                    />
+                                </ListItem>
+                            </List>
+                        </Dialog>
+                    </div>
                     <table className="table">
                         <caption>www.reschain.co</caption>
                         <thead className="thead-dark">
@@ -234,10 +344,14 @@ class MyChains extends Component {
     }
 }
 
+MyChains.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
 const mapStateToProps = (state) => ({
     chains: state.chainReducer.chains,
     loggingIn: state.loginReducer.loggingIn,
 });
 
 MyChains = connect(mapStateToProps)(MyChains);
-export default MyChains;
+export default withStyles(styles)(MyChains);

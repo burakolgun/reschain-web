@@ -56,7 +56,6 @@ function login(mail, pw) {
         apiService.login(mail, pw)
             .then(
                 response => {
-                    console.log(response);
                     if (response.data.success) {
                         if (response.data.token)
                         {
@@ -68,14 +67,12 @@ function login(mail, pw) {
             
                         if (response.data.data.token)
                         {
-                            console.log(response.data.data.userName);
                             dispatch(loginSuccess(response.data.data.userName, response.data.data.message, true));
                             localStorage.setItem('token', response.data.data.token);
                             localStorage.setItem('userName', response.data.data.userName);
 
                         }                        
                     } else {
-                        console.log(response.data.error);
                         dispatch(credentialError(response.data.error, true));
                     }
                 },
