@@ -1,10 +1,10 @@
 import React from 'react';
-import './loginRegister.css';
+import './register.css';
 import { connect } from 'react-redux';
 import { userActions } from "../../Actions/userActions";
-import Loading from "../Loading/loading";
+import Loading from "../../Components/Loading/loading";
 
-class LoginRegister extends React.Component {
+class Register extends React.Component {
     constructor(props) {
         super(props);
 
@@ -13,16 +13,9 @@ class LoginRegister extends React.Component {
             registerEmail: '',
             registerPassword: '',
             registerSubmitted: false,
-            loginUserName: '',
-            loginEmail: '',
-            loginPassword: '',
-            loginSubmitted: false,
-            loginMessage: '',
-            registerMessage: '',
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.loginHandleSubmit = this.loginHandleSubmit.bind(this);
         this.registerHandleSubmit = this.registerHandleSubmit.bind(this);
     }
 
@@ -41,42 +34,17 @@ class LoginRegister extends React.Component {
         }
     }
 
-    loginHandleSubmit(e) {
-        e.preventDefault();
-        this.setState({ loginSubmitted: true });
-        const { loginEmail, loginPassword } = this.state;
-        const { dispatch } = this.props;
-        if (loginEmail && loginPassword) {
-            dispatch(userActions.login(loginEmail, loginPassword));
-        }
-    }
-
     render() {
-        const { registerEmail, registerPassword, registerUserName, registerSubmitted, loading } = this.state;
-        const { loginEmail, loginPassword, loginSubmitted } = this.state;
+        const {registerEmail, registerPassword, registerUserName, registerSubmitted} = this.state;
 
-        let registerButton = this.props.loading && !this.props.type ? <Loading /> :
+        let registerButton = this.props.loading && !this.props.type ? <Loading/> :
             <div>
                 <button className="btn btn-register">Start</button>
             </div>;
 
-        let loginButton = this.props.loading && this.props.type ? <Loading /> :
-            <div>
-                <button className="btn btn-login">Login</button>
-            </div>;
-
-        if (this.props.type != null) {
-            if (this.props.type) {
-                this.state.loginMessage = this.props.message;
-            } else {
-                this.state.registerMessage = this.props.message;
-            }
-        }
-
-        if(this.props.loggingIn)
-           {            
+        if (this.props.loggingIn) {
             this.props.history.push("/chain");
-          }
+        }
 
         return (
 
@@ -122,36 +90,6 @@ class LoginRegister extends React.Component {
                         </div>
                     </form>
                 </div>
-                <div className="login-container">
-                    <h3>LOGIN</h3>
-                    <form name="login-form" onSubmit={this.loginHandleSubmit}>
-                        <div className={'form-group' + (loginSubmitted && !loginEmail ? ' has-error' : '')}>
-                            <input type="text"
-                                className="form-control"
-                                name="loginEmail"
-                                value={loginEmail}
-                                onChange={this.handleChange} />
-                            {loginSubmitted && !loginEmail &&
-                                <div className="help-block">Email is required</div>
-                            }
-                        </div>
-                        <div className={'form-group' + (loginSubmitted && !loginPassword ? ' has-error' : '')}>
-                            <input type="password"
-                                className="form-control"
-                                name="loginPassword"
-                                value={loginPassword}
-                                onChange={this.handleChange} />
-                            {loginSubmitted && !loginPassword &&
-                                <div className="help-block">Password is required</div>
-                            }
-                        </div>
-
-                        <div className="form-group">
-                            {loginButton}
-                            <p>{this.state.loginMessage}</p>
-                        </div>
-                    </form>
-                </div>
             </div>
         );
     }
@@ -159,10 +97,8 @@ class LoginRegister extends React.Component {
 
 const mapStateToProps = (state) => ({
     loggingIn: state.loginReducer.loggingIn,
-    loading: state.loginReducer.loading,
-    message: state.loginReducer.message,
     type: state.loginReducer.type,
 });
 
-LoginRegister = connect(mapStateToProps)(LoginRegister);
-export default LoginRegister;
+Register = connect(mapStateToProps)(Register);
+export default Register;

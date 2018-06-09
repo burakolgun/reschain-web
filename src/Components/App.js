@@ -5,14 +5,12 @@ import './App.css';
 import Header from "../Container/header/header";
 import Footer from "../Container/footer/footer";
 import Content from "../Container/content/content";
-import LoginRegister from "./LoginRegister/loginRegister";
+import Login from "../Pages/Login/login";
+import Register from "../Pages/Register/register";
 import Chains from "./Chains/chains";
 import MyChains from "./Chains/my-chains";
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (
@@ -21,7 +19,8 @@ class App extends Component {
                 <Content>
                     <Switch>
                         <Route exact path='/' component={Marketing} />
-                        <Route path='/login' component={LoginRegister} />
+                        <Route path='/login' component={Login} />
+                        <Route path='/register' component={Register} />
                         <Route path='/chain' component={Chains} />
                         <Route path='/my-chains' component={MyChains} />
                     </Switch>

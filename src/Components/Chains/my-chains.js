@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {alertActions} from '../../Actions/userActions';
 import { chainActions } from '../../Actions/chainActions';
 import Modal from 'react-modal';
 import './chains.css';

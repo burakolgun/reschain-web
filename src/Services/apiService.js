@@ -1,5 +1,4 @@
 import { authHeader } from '../Helpers/authHeader';
-import { Redirect } from 'react-router-dom';
 
 import axios from 'axios'
 
@@ -105,12 +104,4 @@ function checkToken(token) {
     };
 
     return axios.get(baseApiUrl + 'test', requestOptions);
-}
-
-function handleResponse(response) {
-    if (!response.ok) {
-        return Promise.reject(response.statusText);
-    }
-
-    return response.json();
 }

@@ -18,10 +18,14 @@ class Header extends Component {
     };
 
     render() {
-        let link = <Link to="/login">Login/Register</Link>;
+        let navigation =
+            <div>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+            </div>;
 
         if (this.props.loggingIn === true) {
-            link = <div className="container">
+            navigation = <div className="container">
                         <span>
                             <h5>Welcome {this.props.userName}</h5>
                         </span>
@@ -38,11 +42,11 @@ class Header extends Component {
                 <div className="navbar">
                     <div className="logo">
                         <Link to="/">
-                            <img src={require("../../Asset/img/logo.png")} />
+                            <img src={require("../../Asset/img/logo.png")}  alt="logo"/>
                         </Link>
                     </div>
                     <div className="">
-                        {link}
+                        {navigation}
                     </div>
                 </div>
             </header>

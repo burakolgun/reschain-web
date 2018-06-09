@@ -1,6 +1,5 @@
 import { userConstant } from '../Constant/userConstant';
 import { apiService } from "../Services/apiService";
-import { history } from '../Helpers/history';
 
 export const userActions = {
     register,
@@ -16,7 +15,8 @@ function register(mail, pw, name) {
             .then(
                 response => {
                     if (response.data.success) {
-                        dispatch(success(userName, response.data.message, false));
+                        debugger;
+                        dispatch(login(mail, pw));
                     } else {
                         console.log(response.data.error);
                         dispatch(credentialError(response.data.error, false));
